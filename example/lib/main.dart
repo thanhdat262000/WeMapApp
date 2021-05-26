@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:location/location.dart';
+import 'package:wemapgl_example/authScreen/Welcome/welcome_screen.dart';
+import 'package:wemapgl_example/constants.dart';
 import 'package:wemapgl_example/full_map.dart';
 
 import 'animate_camera.dart';
@@ -66,5 +68,12 @@ class MapsDemo extends StatelessWidget {
 
 void main() {
   WEMAP.Configuration.setWeMapKey('GqfwrZUEfxbwbnQUhtBMFivEysYIxelQ');
-  runApp(MaterialApp(home: MapsDemo()));
+  // runApp(MaterialApp(home: MapsDemo()));
+  runApp(MaterialApp(
+    home: WelcomeScreen(),
+    debugShowCheckedModeBanner: false,
+    title: 'Auth Screen',
+    theme: ThemeData(
+        primaryColor: kPrimaryColor, scaffoldBackgroundColor: Colors.white),
+  ));
 }
