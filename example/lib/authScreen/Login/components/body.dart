@@ -6,11 +6,19 @@ import 'package:wemapgl_example/components/rounded_input_field.dart';
 import 'package:wemapgl_example/components/rounded_password_field.dart';
 import 'package:wemapgl_example/components/already_have_an_account_check.dart';
 import 'package:wemapgl_example/authScreen/Signup/signup_screen.dart';
+import 'package:wemapgl_example/utils/validation.dart';
 
-class Body extends StatelessWidget {
+class Body extends StatefulWidget {
   const Body({
     Key key,
   }) : super(key: key);
+
+  @override
+  _BodyState createState() => _BodyState();
+}
+
+class _BodyState extends State<Body> {
+  GlobalKey<FormState> formkey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -30,16 +38,27 @@ class Body extends StatelessWidget {
             'assets/icons/login.svg',
             height: size.height * 0.35,
           ),
-          RoundedInputField(
-            hintText: "Your Email",
-            onChanged: (value) {},
-          ),
-          RoundedPasswordField(
-            onChanged: (value) {},
-          ),
-          RoundedButton(
-            text: "LOGIN",
-            press: () {},
+          Form(
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            key: formkey,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                RoundedInputField(
+                  hintText: "Your Email",
+                  onChanged: (value) {},
+                  validatorFunc: emailValidator,
+                ),
+                RoundedPasswordField(
+                  onChanged: (value) {},
+                  validatorFunc: passwordValidator,
+                ),
+                RoundedButton(
+                  text: "LOGIN",
+                  press: () {},
+                ),
+              ],
+            ),
           ),
           SizedBox(
             height: size.height * 0.03,
