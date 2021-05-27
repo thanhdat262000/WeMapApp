@@ -19,6 +19,7 @@ class Body extends StatefulWidget {
 
 class _BodyState extends State<Body> {
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
+  Map<String, String> formData = {'name': "", 'email': '', 'password': ''};
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -43,29 +44,43 @@ class _BodyState extends State<Body> {
                   RoundedInputField(
                     hintText: "Your Name",
                     icon: Icons.account_circle,
-                    onChanged: (value) {},
+                    onChanged: (value) {
+                      setState(() {
+                        formData['name'] = value;
+                      });
+                    },
                   ),
                   RoundedInputField(
                     hintText: "Your email",
-                    onChanged: (value) {},
+                    onChanged: (value) {
+                      setState(() {
+                        formData['email'] = value;
+                      });
+                    },
                     validatorFunc: emailValidator,
                   ),
                   RoundedPasswordField(
-                    onChanged: (value) {},
+                    onChanged: (value) {
+                      setState(() {
+                        formData['password'] = value;
+                      });
+                    },
                     validatorFunc: passwordValidator,
                   ),
                   RoundedButton(
                     text: "SIGN UP",
-                    press: () {},
+                    press: () {
+                      if (formkey.currentState.validate()) {
+                        print(formData);
+                      }
+                    },
                   ),
                 ],
               )),
           AlreadyHaveAnAccountCheck(
             login: false,
             press: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return LoginScreen();
-              }));
+              Navigator.pushNamed(context, '/login');
             },
           )
         ],
