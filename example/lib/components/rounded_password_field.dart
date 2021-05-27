@@ -3,7 +3,7 @@ import 'package:form_field_validator/form_field_validator.dart';
 import 'package:wemapgl_example/components/text_field_container.dart';
 import 'package:wemapgl_example/constants.dart';
 
-class RoundedPasswordField extends StatelessWidget {
+class RoundedPasswordField extends StatefulWidget {
   final ValueChanged<String> onChanged;
   final ValidatorFunction<String> validatorFunc;
   const RoundedPasswordField({
@@ -13,12 +13,19 @@ class RoundedPasswordField extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  _RoundedPasswordFieldState createState() => _RoundedPasswordFieldState();
+}
+
+class _RoundedPasswordFieldState extends State<RoundedPasswordField> {
+  var isVisible = true;
+
+  @override
   Widget build(BuildContext context) {
     return TextFieldContainer(
       child: TextFormField(
-        obscureText: true,
-        onChanged: onChanged,
-        validator: validatorFunc,
+        obscureText: isVisible,
+        onChanged: widget.onChanged,
+        validator: widget.validatorFunc,
         decoration: InputDecoration(
             enabledBorder:
                 UnderlineInputBorder(borderRadius: BorderRadius.circular(29)),
@@ -35,9 +42,16 @@ class RoundedPasswordField extends StatelessWidget {
               Icons.lock,
               color: kPrimaryColor,
             ),
-            suffixIcon: Icon(
-              Icons.visibility,
-              color: kPrimaryColor,
+            suffixIcon: GestureDetector(
+              onTap: () {
+                setState(() {
+                  isVisible = !isVisible;
+                });
+              },
+              child: Icon(
+                isVisible ? Icons.visibility : Icons.visibility_off,
+                color: kPrimaryColor,
+              ),
             ),
             border: InputBorder.none),
       ),

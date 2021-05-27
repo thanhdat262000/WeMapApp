@@ -19,7 +19,7 @@ class Body extends StatefulWidget {
 
 class _BodyState extends State<Body> {
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
-
+  Map<String, String> formData = {'email': '', 'password': ''};
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -46,16 +46,29 @@ class _BodyState extends State<Body> {
               children: [
                 RoundedInputField(
                   hintText: "Your Email",
-                  onChanged: (value) {},
+                  onChanged: (value) {
+                    setState(() {
+                      formData['email'] = value;
+                    });
+                  },
                   validatorFunc: emailValidator,
                 ),
                 RoundedPasswordField(
-                  onChanged: (value) {},
+                  onChanged: (value) {
+                    setState(() {
+                      formData['password'] = value;
+                    });
+                  },
                   validatorFunc: passwordValidator,
                 ),
                 RoundedButton(
                   text: "LOGIN",
-                  press: () {},
+                  press: () {
+                    if (formkey.currentState.validate()) {
+                      //call API here
+                      Navigator.pushNamed(context, '/homescreen');
+                    }
+                  },
                 ),
               ],
             ),
@@ -64,9 +77,7 @@ class _BodyState extends State<Body> {
             height: size.height * 0.03,
           ),
           AlreadyHaveAnAccountCheck(press: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return SignUpScreen();
-            }));
+            Navigator.pushNamed(context, '/signup');
           })
         ],
       ),

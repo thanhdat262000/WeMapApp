@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:location/location.dart';
+import 'package:wemapgl_example/authScreen/Login/login_screen.dart';
+import 'package:wemapgl_example/authScreen/Signup/signup_screen.dart';
 import 'package:wemapgl_example/authScreen/Welcome/welcome_screen.dart';
 import 'package:wemapgl_example/constants.dart';
 import 'package:wemapgl_example/full_map.dart';
+import 'package:wemapgl_example/homeScreen/home_screen.dart';
 
 import 'animate_camera.dart';
 import 'full_map.dart';
@@ -70,9 +73,15 @@ void main() {
   WEMAP.Configuration.setWeMapKey('GqfwrZUEfxbwbnQUhtBMFivEysYIxelQ');
   // runApp(MaterialApp(home: MapsDemo()));
   runApp(MaterialApp(
-    home: WelcomeScreen(),
     debugShowCheckedModeBanner: false,
     title: 'Auth Screen',
+    initialRoute: '/',
+    routes: {
+      '/': (context) => WelcomeScreen(),
+      '/login': (context) => LoginScreen(),
+      '/signup': (context) => SignUpScreen(),
+      '/homescreen': (context) => HomeScreen(),
+    },
     theme: ThemeData(
         primaryColor: kPrimaryColor, scaffoldBackgroundColor: Colors.white),
   ));
