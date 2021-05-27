@@ -18,6 +18,7 @@ dependencies:
   connectivity: ^0.4.8+1
   fluttertoast: ^3.1.0
   flutter_svg: ^0.22.0
+  form_field_validator: ^1.0.1
 
 dev_dependencies:
   flutter_test:
