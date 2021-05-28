@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:wemapgl_example/api/auth.dart';
 import 'package:wemapgl_example/authScreen/Login/login_screen.dart';
 import 'package:wemapgl_example/authScreen/Signup/components/background.dart';
 import 'package:wemapgl_example/components/already_have_an_account_check.dart';
@@ -7,6 +10,7 @@ import 'package:wemapgl_example/components/rounded_button.dart';
 import 'package:wemapgl_example/components/rounded_input_field.dart';
 import 'package:wemapgl_example/components/rounded_password_field.dart';
 import 'package:wemapgl_example/utils/validation.dart';
+import 'package:wemapgl_example/components/auth_dialog.dart';
 
 class Body extends StatefulWidget {
   const Body({
@@ -71,7 +75,24 @@ class _BodyState extends State<Body> {
                     text: "SIGN UP",
                     press: () {
                       if (formkey.currentState.validate()) {
-                        print(formData);
+                        signUp(formData).then((response) {
+                          if (response.statusCode == 201) {
+                            Navigator.pushNamed(context, '/homescreen');
+                          } else {
+                            showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return AuthDialog(
+                                    dialogTitle: "Error",
+                                    dialogContent:
+                                        jsonDecode(response.body)['message'],
+                                  );
+                                },
+                                barrierDismissible: true);
+                          }
+                        }).error((error) {
+                          print(error);
+                        });
                       }
                     },
                   ),

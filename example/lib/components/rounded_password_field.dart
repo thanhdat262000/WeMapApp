@@ -38,7 +38,7 @@ class _RoundedPasswordFieldState extends State<RoundedPasswordField> {
             fillColor: kPrimaryLightColor,
             filled: true,
             hintText: "Password",
-            icon: Icon(
+            prefixIcon: Icon(
               Icons.lock,
               color: kPrimaryColor,
             ),

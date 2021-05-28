@@ -33,7 +33,7 @@ class RoundedInputField extends StatelessWidget {
               UnderlineInputBorder(borderRadius: BorderRadius.circular(29)),
           fillColor: kPrimaryLightColor,
           filled: true,
-          icon: Icon(
+          prefixIcon: Icon(
             icon,
             color: kPrimaryColor,
           ),

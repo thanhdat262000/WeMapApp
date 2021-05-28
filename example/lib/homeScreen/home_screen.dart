@@ -40,6 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
             icon: Icon(Icons.motorcycle),
             label: "Dẫn đường",
           ),
+          BottomNavigationBarItem(icon: Icon(Icons.settings), label: "Cài đặt")
         ],
         onTap: onChosen,
       ),
