@@ -20,6 +20,8 @@ dependencies:
   flutter_svg: ^0.22.0
   form_field_validator: ^1.0.1
   http: ^0.12.2
+  get: ^4.1.4
+  shared_preferences: ^0.5.12+4
 
 dev_dependencies:
   flutter_test:
