@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:wemapgl_example/appScreen/setting_screen.dart';
+import 'package:wemapgl_example/appScreen/full_map.dart';
+import 'package:wemapgl_example/appScreen/route.dart';
 import 'package:wemapgl_example/constants.dart';
-import 'package:wemapgl_example/ePage.dart';
-import 'package:wemapgl_example/full_map.dart';
-import 'package:wemapgl_example/route.dart';
 
-final List<ePage> allTab = <ePage>[
-  FullMapPage(),
-  RoutePage(),
-];
+final List allTab = [FullMapPage(), RoutePage(), SettingScreen()];
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key key}) : super(key: key);

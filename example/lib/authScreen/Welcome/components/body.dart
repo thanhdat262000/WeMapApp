@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:wemapgl_example/authScreen/Login/login_screen.dart';
 import 'package:wemapgl_example/authScreen/Welcome/components/background.dart';
 import 'package:wemapgl_example/components/rounded_button.dart';
@@ -31,7 +32,7 @@ class Body extends StatelessWidget {
             RoundedButton(
               text: "LOGIN",
               press: () {
-                Navigator.pushNamed(context, '/login');
+                Get.toNamed('/login');
               },
             ),
             RoundedButton(
@@ -39,7 +40,7 @@ class Body extends StatelessWidget {
               color: kPrimaryLightColor,
               textColor: Colors.black,
               press: () {
-                Navigator.pushNamed(context, '/signup');
+                Get.toNamed('/signup');
               },
             ),
           ],
